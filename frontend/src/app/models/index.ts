@@ -6,6 +6,17 @@ export interface User {
   roleDescription: string;
   permissions: string[];
   enabled?: boolean;
+  department?: string;
+  phone?: string;
+  status?: string;
+  statusDescription?: string;
+  gender?: string;
+  genderDescription?: string;
+  emergencyContact?: string;
+  emergencyPhone?: string;
+  joinDate?: string;
+  remark?: string;
+  firstLogin?: boolean;
 }
 
 export interface LoginResponse {
@@ -15,6 +26,59 @@ export interface LoginResponse {
   role: string;
   roleDescription: string;
   permissions: string[];
+  firstLogin: boolean;
+}
+
+export interface PageResponse<T> {
+  content: T[];
+  totalElements: number;
+  totalPages: number;
+  pageNumber: number;
+  pageSize: number;
+}
+
+export interface UserCreateRequest {
+  username: string;
+  password: string;
+  realName: string;
+  role: string;
+  department: string;
+  phone: string;
+  status: string;
+  gender?: string;
+  emergencyContact?: string;
+  emergencyPhone?: string;
+  joinDate: string;
+  remark?: string;
+}
+
+export interface UserUpdateRequest {
+  realName: string;
+  role: string;
+  department: string;
+  phone: string;
+  status: string;
+  gender?: string;
+  emergencyContact?: string;
+  emergencyPhone?: string;
+  joinDate: string;
+  remark?: string;
+}
+
+export interface ChangePasswordRequest {
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
+export interface ResetPasswordRequest {
+  newPassword: string;
+  confirmPassword: string;
+}
+
+export interface OptionItem {
+  value: string;
+  label: string;
 }
 
 export interface ApiResponse<T> {

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -40,6 +41,35 @@ public class User {
 
     @Column(nullable = false)
     private Boolean enabled = true;
+
+    @Column(name = "department", length = 50)
+    private String department;
+
+    @Column(name = "phone", length = 11, unique = true)
+    private String phone;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", length = 20)
+    private UserStatus status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender", length = 10)
+    private Gender gender;
+
+    @Column(name = "emergency_contact", length = 50)
+    private String emergencyContact;
+
+    @Column(name = "emergency_phone", length = 11)
+    private String emergencyPhone;
+
+    @Column(name = "join_date")
+    private LocalDate joinDate;
+
+    @Column(name = "remark", columnDefinition = "TEXT")
+    private String remark;
+
+    @Column(name = "first_login")
+    private Boolean firstLogin = true;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

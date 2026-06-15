@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -23,6 +23,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PageLayoutComponent } from './components/page-layout/page-layout.component';
+import { FirstLoginModalComponent } from './components/first-login-modal/first-login-modal.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
@@ -72,12 +73,14 @@ const routes: Routes = [
     UsersComponent,
     SidebarComponent,
     HeaderComponent,
-    PageLayoutComponent
+    PageLayoutComponent,
+    FirstLoginModalComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes, { useHash: false })
   ],
   providers: [

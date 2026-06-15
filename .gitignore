@@ -11,6 +11,7 @@ npm-debug.log*
 
 # 后端 - Maven / Spring Boot
 backend/target/
+backend/.maven/
 backend/.mvn/
 *.class
 *.jar

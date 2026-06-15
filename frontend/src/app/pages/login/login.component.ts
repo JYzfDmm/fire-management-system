@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import { FirstLoginModalComponent } from '../../components/first-login-modal/first-login-modal.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -55,6 +57,7 @@ import { ApiService } from '../../services/api.service';
         </div>
       </div>
     </div>
+    <app-first-login-modal #firstLoginModal (passwordChanged)="onPasswordChanged()"></app-first-login-modal>
   `,
   styles: [`
     .login-container {
@@ -171,14 +174,18 @@ import { ApiService } from '../../services/api.service';
   `]
 })
 export class LoginComponent {
+  @ViewChild('firstLoginModal') firstLoginModal!: FirstLoginModalComponent;
+
   username: string = '';
   password: string = '';
   loading: boolean = false;
   errorMessage: string = '';
+  private loginSuccess: boolean = false;
 
   constructor(
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   onSubmit(): void {
@@ -189,18 +196,31 @@ export class LoginComponent {
 
     this.loading = true;
     this.errorMessage = '';
+    this.loginSuccess = false;
 
     this.apiService.login(this.username.trim(), this.password).subscribe({
-      next: () => {
-        this.router.navigate(['/home']);
+      next: (response) => {
+        this.loginSuccess = true;
+        if (response.firstLogin) {
+          this.firstLoginModal.show();
+        } else {
+          this.router.navigate(['/home']);
+        }
       },
       error: () => {
         this.errorMessage = '账号或密码错误';
         this.loading = false;
       },
       complete: () => {
-        this.loading = false;
+        if (!this.loginSuccess) {
+          this.loading = false;
+        }
       }
     });
+  }
+
+  onPasswordChanged(): void {
+    this.loading = false;
+    this.router.navigate(['/home']);
   }
 }

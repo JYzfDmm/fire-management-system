@@ -18,4 +18,5 @@ public class LoginResponse {
     private Role role;
     private String roleDescription;
     private Set<Permission> permissions;
+    private Boolean firstLogin;
 }
