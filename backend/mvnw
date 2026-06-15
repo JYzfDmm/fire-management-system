@@ -1,0 +1,40 @@
+#!/bin/bash
+set -e
+
+MAVEN_VERSION="3.9.6"
+BASEDIR="$(cd "$(dirname "$0")" && pwd)"
+MAVEN_DIR="$BASEDIR/.maven"
+MAVEN_HOME="$MAVEN_DIR/apache-maven-$MAVEN_VERSION"
+
+if [ ! -d "$MAVEN_HOME" ]; then
+    echo "Downloading Maven $MAVEN_VERSION..."
+    mkdir -p "$MAVEN_DIR"
+    cd "$MAVEN_DIR"
+    
+    MIRRORS=(
+        "https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
+        "https://dlcdn.apache.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz"
+    )
+    
+    for url in "${MIRRORS[@]}"; do
+        echo "Trying $url..."
+        if curl -fL -o "maven.tar.gz" "$url" 2>/dev/null; then
+            tar xzf "maven.tar.gz"
+            rm -f "maven.tar.gz"
+            if [ -d "$MAVEN_HOME" ]; then
+                echo "Maven installed successfully at $MAVEN_HOME"
+                break
+            fi
+        fi
+    done
+    
+    if [ ! -d "$MAVEN_HOME" ]; then
+        echo "ERROR: Failed to download Maven. Please check your internet connection."
+        exit 1
+    fi
+fi
+
+export M2_HOME="$MAVEN_HOME"
+export PATH="$MAVEN_HOME/bin:$PATH"
+
+exec "$MAVEN_HOME/bin/mvn" "$@"

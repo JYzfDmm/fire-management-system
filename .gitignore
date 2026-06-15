@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+__MACOSX/
+
+# 前端 - Angular
+frontend/node_modules/
+frontend/.angular/
+frontend/dist/
+frontend/.cache/
+npm-debug.log*
+
+# 后端 - Maven / Spring Boot
+backend/target/
+backend/.mvn/
+*.class
+*.jar
+*.war
+
+# 日志
+*.log
+logs/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# 环境变量与敏感配置
+.env
+.env.local
+application-local.yml
+application-local.properties
