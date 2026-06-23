@@ -106,7 +106,7 @@ export class ApiService {
   updateUser(id: number, user: UserUpdateRequest): Observable<User> {
     return this.http.put<ApiResponse<User>>(`${this.baseUrl}/users/${id}`, user)
       .pipe(map(res => {
-        if (res.code !== 200) throw new Error(res.message);
+        if (res.code !== 200) throw new Error(res.message || '更新失败');
         return res.data;
       }));
   }

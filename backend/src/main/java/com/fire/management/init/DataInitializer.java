@@ -122,7 +122,7 @@ public class DataInitializer implements CommandLineRunner {
             user.setStatus(UserStatus.ON_JOB);
             user.setGender(Gender.MALE);
             user.setJoinDate(LocalDate.of(2020, 1, 1));
-            user.setFirstLogin(true);
+            user.setFirstLogin(false);
             userRepository.save(user);
         }
     }
@@ -144,7 +144,7 @@ public class DataInitializer implements CommandLineRunner {
             user.setStatus(UserStatus.ON_JOB);
             user.setGender(Gender.MALE);
             user.setJoinDate(LocalDate.of(2020, 1, 1));
-            user.setFirstLogin(true);
+            user.setFirstLogin(false);
             userRepository.save(user);
         }
     }
@@ -166,7 +166,7 @@ public class DataInitializer implements CommandLineRunner {
             user.setStatus(UserStatus.ON_JOB);
             user.setGender(Gender.MALE);
             user.setJoinDate(LocalDate.of(2020, 1, 1));
-            user.setFirstLogin(true);
+            user.setFirstLogin(false);
             userRepository.save(user);
         }
     }
@@ -187,7 +187,7 @@ public class DataInitializer implements CommandLineRunner {
             user.setStatus(UserStatus.ON_JOB);
             user.setGender(Gender.MALE);
             user.setJoinDate(LocalDate.of(2020, 1, 1));
-            user.setFirstLogin(true);
+            user.setFirstLogin(false);
             userRepository.save(user);
         }
     }
@@ -208,7 +208,7 @@ public class DataInitializer implements CommandLineRunner {
             user.setStatus(UserStatus.ON_JOB);
             user.setGender(Gender.MALE);
             user.setJoinDate(LocalDate.of(2020, 1, 1));
-            user.setFirstLogin(true);
+            user.setFirstLogin(false);
             userRepository.save(user);
         }
     }
@@ -226,7 +226,7 @@ public class DataInitializer implements CommandLineRunner {
         user.setStatus(UserStatus.ON_JOB);
         user.setGender(Gender.MALE);
         user.setJoinDate(LocalDate.of(2020, 1, 1));
-        user.setFirstLogin(true);
+        user.setFirstLogin(false);
         userRepository.save(user);
     }
 }

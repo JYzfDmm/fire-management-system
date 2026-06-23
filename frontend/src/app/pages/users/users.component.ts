@@ -609,12 +609,12 @@ export class UsersComponent implements OnInit {
 
   initForm(): void {
     this.userForm = this.fb.group({
-      username: ['', [Validators.required],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       realName: ['', [Validators.required, Validators.maxLength(50)]],
       role: ['', [Validators.required]],
       department: ['', [Validators.required, Validators.maxLength(50)]],
-      phone: ['', [Validators.required, Validators.pattern(/^1\d{10}$/)],
+      phone: ['', [Validators.required, Validators.pattern(/^1\d{10}$/)]],
       status: ['', [Validators.required]],
       gender: [''],
       joinDate: ['', [Validators.required]],

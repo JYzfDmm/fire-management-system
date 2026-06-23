@@ -164,7 +164,8 @@ public class UserService {
         user.setEmergencyPhone(dto.getEmergencyPhone());
         user.setJoinDate(dto.getJoinDate());
         user.setRemark(dto.getRemark());
-        user.setPermissions(getPermissionsByRole(dto.getRole()));
+        user.getPermissions().clear();
+        user.getPermissions().addAll(getPermissionsByRole(dto.getRole()));
 
         if (dto.getStatus() == UserStatus.RESIGNED) {
             user.setEnabled(false);
